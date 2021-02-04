@@ -15,6 +15,7 @@
     } )
     export default class Login extends Vue {
         login() {
+            this.$store.commit( 'setuserName', '王五' );
             this.$router.push({name: 'home'})
         }
     }

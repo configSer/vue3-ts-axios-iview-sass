@@ -1,15 +1,15 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <Button type="primary" long @click="setUserName">这是一个按钮</Button>
-    <Input style="margin-top: 10px" v-model="userName" />
+    <Input v-model="userName" />
+    <Button style="margin-top: 10px" type="primary" long @click="setUserName">提交</Button>
   </div>
 </template>
 
 
 <script lang="ts">
   import { Component, Vue, Watch } from 'vue-property-decorator';
-  import { Button, Input } from 'view-design'
+  import { Button, Input, Message } from 'view-design'
 
   @Component( {
 	  components: {
@@ -21,14 +21,35 @@
 	  userName = this.$store.state.userName;
 	 
 	  setUserName () {
-		  this.userName = '王五';
-		  this.$store.commit( 'setuserName', '王五' );
-	  }
+		 if ( this.userName ) {
+           this.$Modal.success({
+             content: '我的名字叫' + this.$store.state.userName
+           });
+         } else {
+           this.$Message.warning('请给我取名');
+         }
+      }
 	
 	  @Watch( 'userName' )
       onUserNameChanged (userName: any) {
 		  this.$store.commit( 'setuserName', userName );
 	  }
+	  
+	  mounted() {
+	    this.$axios({
+          method: 'get',
+          url: './index.html',
+          params: {
+            key: ''
+          },
+          headers: {},
+          responseType: 'json'
+        }).then(res => {
+          console.log(res)
+        }).catch(err => {
+          console.log(err)
+        })
+      }
   }
   
 </script>
