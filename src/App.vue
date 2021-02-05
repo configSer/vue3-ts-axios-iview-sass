@@ -19,6 +19,22 @@
 			    console.log( '清除token' )
 		    }
 	    }
+	
+	    created () {
+		    if ( sessionStorage.getItem( 'state' ) ) {
+			    this.$store.replaceState(
+				    Object.assign(
+					    {},
+					    this.$store.state,
+					    JSON.parse( sessionStorage.getItem( 'state' ) )
+				    )
+			    )
+			    sessionStorage.removeItem( 'state' )
+		    }
+		    window.addEventListener( 'beforeunload', _ => {
+			    sessionStorage.setItem( 'state', JSON.stringify( this.$store.state ) )
+		    } )
+	    }
     }
 </script>
 
