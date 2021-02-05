@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import axios, { AxiosInstance } from 'axios'
+// import axios, { AxiosInstance } from 'axios'
 import { Message, Modal } from 'view-design'
 import App from './App.vue'
 import router from './router'
@@ -9,20 +9,20 @@ import './style/index.scss'
 
 Vue.config.productionTip = false
 
-Vue.use(v => {
-  v.prototype.$axios = axios
-  v.prototype.$Message = Message
-  v.prototype.$Modal = Modal
-})
+Vue.use( v => {
+	// v.prototype.$axios = axios
+	v.prototype.$Message = Message
+	v.prototype.$Modal = Modal
+} )
 
-declare module 'Vue/types/vue' {
-  interface Vue {
-    $axios: AxiosInstance
-  }
-}
+// declare module 'Vue/types/vue' {
+//   interface Vue {
+//     $axios: AxiosInstance
+//   }
+// }
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+new Vue( {
+	router,
+	store,
+	render: h => h( App )
+} ).$mount( '#app' )

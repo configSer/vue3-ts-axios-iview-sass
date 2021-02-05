@@ -19,37 +19,28 @@
   } )
   export default class About extends Vue {
 	  userName = this.$store.state.userName;
-	 
-	  setUserName () {
-		 if ( this.userName ) {
-           this.$Modal.success({
-             content: '我的名字叫' + this.$store.state.userName
-           });
-         } else {
-           this.$Message.warning('请给我取名');
-         }
-      }
 	
-	  @Watch( 'userName' )
-      onUserNameChanged (userName: any) {
+	  setUserName () {
+		  if ( this.userName ) {
+			  this.$Modal.success( {
+				  content: '我的名字叫' + this.$store.state.userName
+			  } );
+		  } else {
+			  this.$Message.warning( '请给我取名' );
+		  }
+	  }
+	
+	  @Watch( 'userName' ) onUserNameChanged ( userName: any ) {
 		  this.$store.commit( 'setuserName', userName );
 	  }
-	  
-	  mounted() {
-	    this.$axios({
-          method: 'get',
-          url: './index.html',
-          params: {
-            key: ''
-          },
-          headers: {},
-          responseType: 'json'
-        }).then(res => {
-          console.log(res)
-        }).catch(err => {
-          console.log(err)
-        })
-      }
+	
+	  mounted () {
+		  this.getPage()
+	  }
+	
+	  getPage () {
+		
+	  }
   }
   
 </script>

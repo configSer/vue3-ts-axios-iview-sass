@@ -39,6 +39,7 @@
 	    mounted () {
 		    new Swiper( ".swiper-container", {
 			    loop: true, //循环
+                autoplay: true,
 			    pagination: { //分页符
 				    el: '.swiper-pagination',
 			    },
