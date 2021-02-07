@@ -12,7 +12,7 @@ module.exports = {
 		open: true,
 		proxy: {
 			'/api': {
-				target: 'https://cdp.yiche.com',
+				target: 'http://XXXXXXXXXXXXX.com',
 				changeOrigin: true
 			}
 		}

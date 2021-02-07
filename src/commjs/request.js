@@ -32,9 +32,6 @@ axios.interceptors.response.use(( res ) => {
 				Message.error('服务器挂了');
 				Vue.$router.push({name: 'login'})
 				break;
-			case 401:
-				Message.error(msg)
-				break;
 			case 403:
 				Message.error(msg ? msg : '您没有接口权限')
 				break;
